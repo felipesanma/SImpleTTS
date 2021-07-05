@@ -9,6 +9,7 @@ import os
 import base64
 import streamlit as st
 from ibm_watson import TextToSpeechV1
+from PIL import Image
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
 
@@ -36,6 +37,8 @@ def crea_audio(texto,voz,archivo='tu_audio_generado.wav'):
     
     return archivo
 
+favicon = Image.open("favicon.ico")
+st.beta_set_page_config(page_title='TTS Tester', page_icon = favicon, layout = 'wide', initial_sidebar_state = 'auto')
 st.header("TTS IBM testing")
 
 
