@@ -38,7 +38,7 @@ def crea_audio(texto,voz,archivo='tu_audio_generado.wav'):
     return archivo
 
 favicon = Image.open("favicon.ico")
-st.beta_set_page_config(page_title='TTS Tester', page_icon = favicon, layout = 'wide', initial_sidebar_state = 'auto')
+st.set_page_config(page_title='TTS Tester', page_icon = favicon, layout = 'wide', initial_sidebar_state = 'auto')
 st.header("TTS IBM testing")
 
 
