@@ -65,12 +65,31 @@ if st.button('Generar audio'):
     
     with st.spinner('Haciendo autentificación..'):
         
-        authenticator = IAMAuthenticator(apikey)
-        text_to_speech = TextToSpeechV1(authenticator=authenticator)
-    
-        with st.spinner("Generando audio"):
+        try:
             
+            authenticator = IAMAuthenticator(apikey)
+            text_to_speech = TextToSpeechV1(authenticator=authenticator)
+            text_to_speech.set_service_url(url)
+        
+        except Exception as e: 
+            
+            st.error("No se logró la autentificación")
+            st.warning(f"Revisa que la apikey: {apikey} y url: {url}, sean correctas")
+            st.info("Abajo los detalles")
+            st.exception(e)
+            st.stop()
+    
+    with st.spinner("Generando audio"):
+            
+        try:
             audio = crea_audio(text, voice)
+            
+        except Exception as e:
+                
+            st.error("No se logró generar el audio")
+            st.info("Abajo los detalles")
+            st.exception(e)
+            st.stop()
     
     st.success('¡Audio generado!')
     st.balloons()
